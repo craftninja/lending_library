@@ -7,10 +7,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(allowed_parameters)
     if @user.save
+      session[:current_user_id] = @user.id
       redirect_to root_path
     else
       render :new
     end
+  end
+
+  def destroy
+    @_current_user = session[:current_user_id] = nil
+    redirect_to root_path
   end
 
   def allowed_parameters
