@@ -14,11 +14,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @_current_user = session[:current_user_id] = nil
-    redirect_to root_path
-  end
-
   def allowed_parameters
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
