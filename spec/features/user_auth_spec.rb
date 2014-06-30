@@ -46,4 +46,15 @@ feature 'Homepage' do
     expect(page).to have_content(welcome_message)
   end
 
+  scenario "User cannot login if their email address does not exist" do
+    email_address = 'chris@example.com'
+    password = '123456'
+    visit '/'
+    click_on 'Log in'
+    fill_in 'Email', with: email_address
+    fill_in 'Password', with: password
+    click_on 'Log in'
+    expect(page).to have_content "Email / password is invalid"
+  end
+
 end
