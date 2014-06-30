@@ -57,4 +57,21 @@ feature 'Homepage' do
     expect(page).to have_content "Email / password is invalid"
   end
 
+  scenario "User cannot sign in with an invalid email and/or password" do
+    email_address = 'chris@example.com'
+    password = '123456'
+    visit '/'
+    click_on 'Sign up'
+    fill_in 'Email', with: email_address
+    fill_in 'Password', with: password
+    fill_in 'Password confirmation', with: password
+    click_on 'Sign up'
+    click_on 'Log out'
+    click_on 'Log in'
+    fill_in 'Email', with: email_address
+    fill_in 'Password', with: "password"
+    click_on 'Log in'
+    expect(page).to have_content "Email / password is invalid"
+  end
+
 end
