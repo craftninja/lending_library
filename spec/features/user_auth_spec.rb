@@ -28,7 +28,7 @@ feature 'Homepage' do
 
   end
 
-  scenario "User can login with registered email and password" do
+  scenario 'User can login with registered email and password' do
     email_address = 'chris@example.com'
     password = 'password'
     welcome_message = "Welcome to the lending library #{email_address}"
@@ -46,7 +46,7 @@ feature 'Homepage' do
     expect(page).to have_content(welcome_message)
   end
 
-  scenario "User cannot login if their email address does not exist" do
+  scenario 'User cannot login if their email address does not exist' do
     email_address = 'chris@example.com'
     password = '123456'
     visit '/'
@@ -54,10 +54,10 @@ feature 'Homepage' do
     fill_in 'Email', with: email_address
     fill_in 'Password', with: password
     click_on 'Log in'
-    expect(page).to have_content "Email / password is invalid"
+    expect(page).to have_content 'Email / password is invalid'
   end
 
-  scenario "User cannot sign in with an invalid email and/or password" do
+  scenario 'User cannot sign in with an invalid email and/or password' do
     email_address = 'chris@example.com'
     password = '123456'
     visit '/'
@@ -69,9 +69,9 @@ feature 'Homepage' do
     click_on 'Log out'
     click_on 'Log in'
     fill_in 'Email', with: email_address
-    fill_in 'Password', with: "password"
+    fill_in 'Password', with: 'password'
     click_on 'Log in'
-    expect(page).to have_content "Email / password is invalid"
+    expect(page).to have_content 'Email / password is invalid'
   end
 
 end
